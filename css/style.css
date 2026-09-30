@@ -1,0 +1,554 @@
+/* Will Julander — Portfolio (direction "6a Ruled")
+   Plain CSS, no build step. Fonts: Archivo + IBM Plex Mono (Google Fonts).
+   Warm paper ground, one strong brand green used in quantity, projects as rows. */
+
+:root {
+  --green: #1f4d3a;          /* primary brand green */
+  --green-dark: #163827;     /* hover / footer-solid variant */
+  --green-tint: #eef1ec;     /* row hover, model panel ground */
+  --green-pale: #a8cbb8;     /* small labels on green */
+  --green-soft: #cfdcd4;     /* body text on green */
+  --paper: #fbfaf6;          /* page background */
+  --paper-2: #f3f1e8;        /* light-on-green text, inset panels */
+  --ink: #17110c;            /* headlines */
+  --ink-2: #443c31;          /* hero body copy */
+  --ink-3: #504738;          /* project body copy */
+  --ink-4: #6b6459;          /* small labels, nav idle */
+  --rule: #e4dfd3;           /* hairline dividers */
+  --rule-2: #cbc4b4;         /* secondary button border */
+  --wrap: 1180px;
+  /* Side padding that lines full-bleed bars' content up with the 1180px column
+     (the column's own sections carry 48px padding, so 1180 - 96 = 1084). */
+  --edge: max(48px, calc((100vw - 1084px) / 2));
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Archivo, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--green); }
+img, svg { display: block; max-width: 100%; }
+
+::selection { background: var(--green-tint); color: var(--green-dark); }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+.page { max-width: var(--wrap); margin: 0 auto; }
+
+/* Shared small type */
+.eyebrow {
+  margin: 0 0 20px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.mono-note {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+/* ---------- header (green bar) ---------- */
+.site {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 22px var(--edge);
+  background: var(--green);
+  color: var(--paper-2);
+}
+.site .mark { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+.site .mark:hover { color: #fff; }
+.nav-links { display: flex; gap: 30px; font-size: 14px; }
+.nav-links a { color: var(--green-soft); }
+.nav-links a:hover { color: #fff; }
+.nav-links a[aria-current="page"] {
+  color: var(--paper-2);
+  border-bottom: 2px solid #8fbfa5;
+  padding-bottom: 3px;
+}
+.btn-resume {
+  font-size: 13.5px;
+  font-weight: 600;
+  border: 1.5px solid var(--paper-2);
+  padding: 9px 16px;
+}
+.btn-resume:hover { background: var(--paper-2); color: var(--green); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 15px 28px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.btn.solid { background: var(--green); color: var(--paper-2); }
+.btn.solid:hover { background: var(--green-dark); color: var(--paper-2); }
+.btn.quiet { border: 1.5px solid var(--rule-2); color: var(--ink); }
+.btn.quiet:hover { border-color: var(--green); color: var(--green); }
+
+/* ---------- hero (home) ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 56px;
+  align-items: center;
+  padding: 64px 48px 56px;
+}
+.hero img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.hero h1 {
+  margin: 0;
+  font-size: 84px;
+  line-height: 0.92;
+  font-weight: 800;
+  letter-spacing: -0.042em;
+}
+.lede {
+  margin: 28px 0 0;
+  max-width: 48ch;
+  font-size: 18px;
+  line-height: 1.62;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+.ctas { display: flex; gap: 12px; margin-top: 34px; flex-wrap: wrap; }
+
+/* ---------- ruled statement band (the "6a" middle) ---------- */
+.statement {
+  margin: 0 48px 70px;
+  padding: 34px 0;
+  border-top: 3px solid var(--green);
+  border-bottom: 3px solid var(--green);
+}
+.statement h2 {
+  margin: 0;
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+.statement p {
+  margin: 14px 0 0;
+  max-width: 78ch;
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--ink-3);
+  text-wrap: pretty;
+}
+
+/* ---------- featured projects (rows) ---------- */
+.projects { padding: 0 48px 72px; }
+.projects h2 {
+  margin: 0 0 34px;
+  padding-bottom: 16px;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  border-bottom: 1px solid var(--green);
+}
+.row {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 34px;
+  align-items: center;
+  padding: 26px 18px;
+  margin: 0 -18px;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.2s;
+}
+.row:hover { background: var(--green-tint); color: inherit; }
+.row-media {
+  height: 186px;
+  display: flex;
+  align-items: flex-end;
+  padding: 11px;
+  background: repeating-linear-gradient(135deg, #e4e8e2 0 8px, var(--green-tint) 8px 16px);
+}
+.row-media.has-img { padding: 0; background: none; }
+.row-media.has-img img { width: 100%; height: 100%; object-fit: cover; }
+.slot-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+.row-viewer {
+  position: relative;
+  height: 186px;
+  background: var(--green-tint);
+  border: 1px solid #dbe2dc;
+  overflow: hidden;
+}
+.row-viewer canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+.row-viewer canvas:active { cursor: grabbing; }
+.drag-hint {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  z-index: 2;
+  padding: 3px 7px;
+  background: rgba(255, 255, 255, 0.8);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.row-tag {
+  margin: 0 0 10px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.row h3 {
+  margin: 0 0 9px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+.row p {
+  margin: 0;
+  max-width: 64ch;
+  font-size: 15.5px;
+  line-height: 1.58;
+  color: var(--ink-3);
+}
+.all-projects { margin-top: 22px; }
+.all-projects a { font-size: 14.5px; font-weight: 600; color: var(--green); }
+.all-projects a:hover { color: var(--green-dark); }
+
+/* ---------- interior page intro ---------- */
+.page-intro {
+  padding: 60px 48px 40px;
+}
+.page-intro h1 {
+  margin: 0;
+  font-size: 64px;
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.page-intro .lede { margin-top: 24px; max-width: 62ch; }
+
+.section-wrap { padding: 0 48px 72px; }
+
+/* ---------- prose (about, detail copy) ---------- */
+.prose { max-width: 66ch; }
+.prose > * + * { margin-top: 1.1rem; }
+.prose p { font-size: 16.5px; line-height: 1.65; color: var(--ink-2); text-wrap: pretty; }
+.prose strong { color: var(--ink); }
+
+/* Ruled sub-heading — the statement-band rules, reused to divide long-form */
+.ruled-h {
+  margin: 0 0 22px;
+  padding: 22px 0 0;
+  border-top: 3px solid var(--green);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+/* ---------- about: photo + intro ---------- */
+.about-hero {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 56px;
+  align-items: start;
+  padding: 60px 48px 40px;
+}
+.about-hero img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.about-hero h1 {
+  margin: 0;
+  font-size: 60px;
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+/* revision-history table — the story as a rev block, in 6a green */
+.rev-table { width: 100%; border-collapse: collapse; border: 1.5px solid var(--green); background: #fff; }
+.rev-table caption {
+  text-align: left;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  padding-bottom: 0.7rem;
+}
+.rev-table th, .rev-table td {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.rev-table thead th {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--paper-2);
+  font-weight: 500;
+  background: var(--green);
+}
+.rev-table .rev { font-family: "IBM Plex Mono", ui-monospace, monospace; color: var(--green); font-weight: 600; white-space: nowrap; }
+.rev-table .date { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; color: var(--ink-4); white-space: nowrap; }
+
+/* ---------- contact page ---------- */
+.contact-main { padding: 60px 48px 40px; }
+.contact-main .big {
+  margin: 0;
+  font-size: clamp(28px, 4.5vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: pretty;
+}
+.contact-main .big a { border-bottom: 3px solid var(--green); }
+.contact-main .big a:hover { color: var(--green); }
+.contact-rows { margin-top: 40px; border-top: 1.5px solid var(--green); }
+.contact-rows .r {
+  display: grid;
+  grid-template-columns: 190px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 15.5px;
+}
+.contact-rows .r .k {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.notes { margin-top: 40px; }
+.notes ol { list-style: none; counter-reset: n; margin: 14px 0 0; padding: 0; }
+.notes li {
+  counter-increment: n;
+  position: relative;
+  padding: 8px 0 8px 34px;
+  color: var(--ink-3);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.notes li::before {
+  content: counter(n) ".";
+  position: absolute;
+  left: 4px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--green);
+}
+
+/* ---------- project detail pages ---------- */
+.detail-head {
+  margin: 40px 48px 0;
+  border: 1.5px solid var(--green);
+  background: #fff;
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.detail-head .title-cell { padding: 30px 34px; }
+.detail-head .title-cell .row-tag { margin-bottom: 12px; }
+.detail-head .title-cell h1 {
+  margin: 0;
+  font-size: clamp(30px, 4.5vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+.detail-head .spec-cell {
+  border-left: 1.5px solid var(--green);
+  display: grid;
+  grid-auto-rows: 1fr;
+  min-width: 210px;
+}
+.detail-head .spec-cell div {
+  padding: 0.6rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.detail-head .spec-cell div + div { border-top: 1px solid var(--rule); }
+.spec-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+.spec-value { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; color: var(--ink); }
+
+.detail-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 56px;
+  padding: 48px 48px 24px;
+}
+.detail-body h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 34px 0 0; }
+.detail-body h2:first-child { margin-top: 0; }
+.detail-body .prose > * + * { margin-top: 1rem; }
+
+/* the detail-page live model panel */
+.model-panel {
+  position: relative;
+  height: 300px;
+  background: var(--green-tint);
+  border: 1px solid #dbe2dc;
+  overflow: hidden;
+}
+.model-panel canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+.model-panel canvas:active { cursor: grabbing; }
+
+.process-list { list-style: none; counter-reset: step; margin: 0; padding: 0; }
+.process-list li {
+  counter-increment: step;
+  padding: 0.9rem 0 0.9rem 3rem;
+  position: relative;
+  border-bottom: 1px solid var(--rule);
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.process-list li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.95rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--green);
+}
+
+aside.detail-side > * + * { margin-top: 1.6rem; }
+
+.spec-table { width: 100%; border-collapse: collapse; border: 1px solid var(--rule); background: #fff; }
+.spec-table th, .spec-table td {
+  text-align: left;
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+}
+.spec-table th {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  font-weight: 500;
+  width: 40%;
+}
+.spec-table tr:last-child th, .spec-table tr:last-child td { border-bottom: none; }
+
+/* placeholder slots on detail pages */
+.slot {
+  border: 1.5px dashed var(--rule-2);
+  background: repeating-linear-gradient(135deg, #e4e8e2 0 8px, var(--green-tint) 8px 16px);
+  display: flex;
+  align-items: flex-end;
+  padding: 11px;
+  min-height: 200px;
+}
+.slot .slot-label { color: var(--ink-4); }
+
+.back-link {
+  display: inline-block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.detail-top { padding: 20px 48px 0; }
+
+/* ---------- contact block (green footer) ---------- */
+.contact {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 60px var(--edge) 64px;
+  background: var(--green);
+  color: var(--paper-2);
+}
+.contact .eyebrow { color: var(--green-pale); margin-bottom: 14px; }
+.contact-email {
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--paper-2);
+}
+.contact-email:hover { color: #fff; }
+.contact-links { display: flex; gap: 26px; margin-top: 26px; font-size: 14.5px; flex-wrap: wrap; }
+.contact-links a {
+  color: var(--green-soft);
+  border-bottom: 1px solid rgba(243, 241, 232, 0.4);
+  padding-bottom: 2px;
+}
+.contact-links a:hover { color: #fff; }
+
+/* ---------- reveal (subtle) ---------- */
+.reveal { opacity: 0; transform: translateY(14px); }
+.reveal.in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 980px) {
+  .site { padding: 18px 28px; flex-wrap: wrap; }
+  .hero { grid-template-columns: 1fr; gap: 32px; padding: 44px 28px 40px; }
+  .hero img { max-width: 340px; }
+  .hero h1 { font-size: 62px; }
+  .statement { margin: 0 28px 52px; }
+  .statement h2 { font-size: 30px; }
+  .projects { padding: 0 28px 56px; }
+  .row { grid-template-columns: 1fr; gap: 18px; }
+  .page-intro { padding: 44px 28px 32px; }
+  .page-intro h1 { font-size: 48px; }
+  .section-wrap { padding: 0 28px 56px; }
+  .about-hero { grid-template-columns: 1fr; gap: 28px; padding: 44px 28px 32px; }
+  .about-hero img { max-width: 320px; }
+  .about-hero h1 { font-size: 46px; }
+  .contact-main { padding: 44px 28px 32px; }
+  .contact-rows .r { grid-template-columns: 1fr; gap: 4px; }
+  .detail-top { padding: 16px 28px 0; }
+  .detail-head { margin: 32px 28px 0; grid-template-columns: 1fr; }
+  .detail-head .spec-cell { border-left: none; border-top: 1.5px solid var(--green); grid-template-columns: repeat(2, 1fr); }
+  .detail-head .spec-cell div + div { border-top: none; }
+  .detail-head .spec-cell div { border-top: 1px solid var(--rule); }
+  .detail-head .spec-cell div:nth-child(-n+2) { border-top: none; }
+  .detail-body { grid-template-columns: 1fr; gap: 32px; padding: 36px 28px 16px; }
+  .back-link { margin-left: 28px; margin-right: 28px; }
+  .contact { padding: 44px 28px 48px; }
+  .contact-email { font-size: 30px; }
+}

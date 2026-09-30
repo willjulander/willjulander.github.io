@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" font-family="IBM Plex Mono, Consolas, monospace">
+  <rect width="600" height="400" fill="#fdfeff"/>
+  <g stroke="#52646f" stroke-width="1.5" fill="none">
+    <!-- Front view: daisy -->
+    <g transform="translate(210,190)">
+      <g id="petals">
+        <ellipse cx="0" cy="-62" rx="22" ry="40"/>
+        <ellipse cx="0" cy="-62" rx="22" ry="40" transform="rotate(45)"/>
+        <ellipse cx="0" cy="-62" rx="22" ry="40" transform="rotate(90)"/>
+        <ellipse cx="0" cy="-62" rx="22" ry="40" transform="rotate(135)"/>
+        <ellipse cx="0" cy="-62" rx="22" ry="40" transform="rotate(180)"/>
+        <ellipse cx="0" cy="-62" rx="22" ry="40" transform="rotate(225)"/>
+        <ellipse cx="0" cy="-62" rx="22" ry="40" transform="rotate(270)"/>
+        <ellipse cx="0" cy="-62" rx="22" ry="40" transform="rotate(315)"/>
+      </g>
+      <circle r="30"/>
+      <circle r="20" stroke-dasharray="4 3" stroke-width="1"/>
+    </g>
+    <!-- Side view: pin profile -->
+    <rect x="470" y="88" width="14" height="204"/>
+    <line x1="484" y1="120" x2="504" y2="120" stroke-width="1"/>
+    <line x1="484" y1="260" x2="504" y2="260" stroke-width="1"/>
+  </g>
+  <!-- Centerlines -->
+  <g stroke="#9fb0bc" stroke-width="1" stroke-dasharray="14 4 3 4">
+    <line x1="90" y1="190" x2="330" y2="190"/>
+    <line x1="210" y1="70" x2="210" y2="310"/>
+    <line x1="477" y1="70" x2="477" y2="310"/>
+  </g>
+  <!-- Dimensions -->
+  <g stroke="#35618e" stroke-width="1.2" fill="#35618e">
+    <line x1="105" y1="330" x2="315" y2="330" fill="none"/>
+    <path d="M105 330 l8 -3 v6 z"/>
+    <path d="M315 330 l-8 -3 v6 z"/>
+    <line x1="105" y1="298" x2="105" y2="336" fill="none" stroke-width="0.8"/>
+    <line x1="315" y1="298" x2="315" y2="336" fill="none" stroke-width="0.8"/>
+  </g>
+  <text x="210" y="322" text-anchor="middle" font-size="13" fill="#35618e">&#216;52.0</text>
+  <text x="512" y="194" font-size="13" fill="#35618e">3.2</text>
+  <!-- Labels -->
+  <text x="210" y="360" text-anchor="middle" font-size="12" fill="#52646f" letter-spacing="2">FRONT VIEW</text>
+  <text x="477" y="360" text-anchor="middle" font-size="12" fill="#52646f" letter-spacing="2">SIDE</text>
+  <text x="30" y="42" font-size="12" fill="#35618e" letter-spacing="2">DWG-001 &#183; DAISY PIN</text>
+  <text x="30" y="60" font-size="10" fill="#9fb0bc" letter-spacing="1">PLACEHOLDER DRAWING &#8212; REPLACE WITH PHOTO</text>
+</svg>
