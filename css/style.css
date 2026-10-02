@@ -287,6 +287,23 @@ img, svg { display: block; max-width: 100%; }
   letter-spacing: -0.04em;
 }
 
+/* about: smaller page heading, a step above the ruled section headings */
+.page-intro.about-intro { padding-bottom: 28px; }
+.page-intro.about-intro h1 { font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; }
+
+/* about: story text + photo on the right */
+.about-body {
+  display: grid;
+  grid-template-columns: minmax(0, 66ch) 340px;
+  gap: 56px;
+  align-items: start;
+}
+.about-photo { margin: 0; }
+.about-photo.centered { align-self: center; }
+.about-photo img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 35%; }
+.about-photo img.tall { aspect-ratio: 1 / 1; object-position: 50% 75%; }
+.about-photo figcaption { margin-top: 12px; line-height: 1.5; }
+
 /* revision-history table — the story as a rev block, in 6a green */
 .rev-table { width: 100%; border-collapse: collapse; border: 1.5px solid var(--green); background: #fff; }
 .rev-table caption {
@@ -539,6 +556,8 @@ aside.detail-side > * + * { margin-top: 1.6rem; }
   .about-hero { grid-template-columns: 1fr; gap: 28px; padding: 44px 28px 32px; }
   .about-hero img { max-width: 320px; }
   .about-hero h1 { font-size: 46px; }
+  .about-body { grid-template-columns: 1fr; gap: 32px; }
+  .about-photo { max-width: 340px; }
   .contact-main { padding: 44px 28px 32px; }
   .contact-rows .r { grid-template-columns: 1fr; gap: 4px; }
   .detail-top { padding: 16px 28px 0; }
